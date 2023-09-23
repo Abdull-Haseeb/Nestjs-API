@@ -1,13 +1,13 @@
-import { Controller, Get, Param } from '@nestjs/common';
-
-@Controller('humans')
-export class HumansController {
-  @Get()
-  findAll(): string {
-    return 'This is a human';
+import { Controller, Get, Post, Res,HttpStatus } from "@nestjs/common"
+import { Response } from "express";
+@Controller('humans') 
+export class HumansController {     @Post()
+  create(@Res() res: Response) {
+    res.status(HttpStatus.CREATED).json(["Apples","Banana","Mango","Opciones","Orange","Strawberry","Date"]);;
   }
-  @Get(':id')
-  findOne(@Param('id') id: string): string {
-    return `This is the human no ${id}`;
+
+  @Get()
+  findAll(@Res() res: Response) {
+     res.status(HttpStatus.OK).json(["Apples","Banana","Mango","Opciones","Orange","Strawberry","Date"]);
   }
 }
